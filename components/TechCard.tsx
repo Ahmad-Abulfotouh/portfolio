@@ -8,7 +8,7 @@ import {
 interface TechCardProps {
   category: string;
   skills: string[];
-  icon: React.ComponentType<{ size?: number; stroke?: number }>;
+  icon: React.ComponentType<{ size?: number; stroke?: number; className?: string }>;
 }
 
 export function TechCard({ category, skills, icon: CardIcon }: TechCardProps) {

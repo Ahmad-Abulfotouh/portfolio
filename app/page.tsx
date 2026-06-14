@@ -1,65 +1,84 @@
 import Image from "next/image";
+import { IconCode, IconLayersLinked, IconDatabase } from "@tabler/icons-react";
+
+// components
+import { Footer } from "../components/Footer"
+import { Header } from "@/components/Header";
+import { SectionWrapper } from "@/components/Section";
+import { TechCard } from "@/components/TechCard";
+import { ProjectCard } from "@/components/ProjectCard";
+import { TimelineItem } from "@/components/ExperianceCard";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <div className="">
+      {/* Header */}  
+      <Header />
+
+      <main className="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-8 text-slate-100 min-h-screen">
+
+        {/* Technologies Section */}
+        <SectionWrapper 
+          id="technologies" 
+          title="Tech Stack & Tools" 
+          description="The languages, frameworks, and databases I use to build scalable backend systems."
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <TechCard icon={IconCode}         category="Languages"   skills={["TypeScript", "JavaScript ES6+"]} />
+            <TechCard icon={IconLayersLinked} category="Frameworks"  skills={["NestJS", "Express.js", "Next.js"]} />
+            <TechCard icon={IconDatabase}     category="Databases"   skills={["PostgreSQL", "Prisma ORM"]} />
+          </div>
+        </SectionWrapper>
+
+        {/* Experiences Section */}
+        <SectionWrapper 
+          id="experience" 
+          title="Education & Journey" 
+          description="A brief timeline of my academic background and professional journey."
+        >
+          {/* Time line */}
+          <div className="relative border-l border-slate-800 ml-4 md:ml-6 space-y-10 py-2">
+            <TimelineItem 
+              dateRange="2024 - 2026"
+              title="Military Service — Reserve Officer"
+              subtitle="Armed Forces"
+              description="Fulfilled national service requirements with dedication. Developed strong leadership, crisis management, and team collaboration skills under high-pressure environments."
+              isActive={true}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <TimelineItem 
+              dateRange="2018 - 2023"
+              title="Bachelor’s Degree in Engineering"
+              subtitle="BUC - Faculty of Engineering"
+              description="Gained a solid mathematical and analytical foundation, specializing in problem-solving methodologies and core software engineering concepts that directly translate into scalable backend architecture."
+            />
+
+          </div>
+        </SectionWrapper>
+        {/* Projects Section */}        
+        <SectionWrapper 
+          id="projects" 
+          title="Featured Projects" 
+          description="A showcase of my recent backend and full-stack development work."
+        >
+          <ProjectCard
+            title="Task Orchestrator — To-Do App"
+            stackType="PERN Stack"
+            description="Full-stack task management app with JWT-based authentication. Users can register, log in, manage their tasks, and update their own password — all backed by a RESTful API deployed on Vercel."
+            decisions={[
+              { label: "Auth strategy",  value: "JWT — stateless, no session store needed" },
+              { label: "Data layer",     value: "Prisma ORM over raw SQL — type-safe queries" },
+              { label: "API design",     value: "RESTful with Express.js, scoped per user" },
+              { label: "Deployment",     value: "Vercel — serverless, zero-config CI/CD" },
+            ]}
+            technologies={["Next.js", "Express.js", "PostgreSQL", "Prisma ORM", "JWT", "Vercel"]}
+            githubUrl="https://github.com/Ahmad-Abulfotouh/pern-todo-api"
+            liveUrl="https://pern-todo-web-kappa.vercel.app/auth" // اختياري — شيله لو مفيش ديمو
+          />
+        </SectionWrapper>
       </main>
+
+      {/* Footer */}  
+      <Footer />
     </div>
   );
 }
